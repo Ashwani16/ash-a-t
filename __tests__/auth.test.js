@@ -44,7 +44,7 @@ describe("authapi",()=>{
         let userData={email:"user1",password:"12345"}
         await request(app).post("/api/auth/signup").send(userData)
 
-        let res = await request(app).post("/api/auth/login").send({email:"user1",password:"1234"})
+        let res = await request(app).post("/api/auth/login").send({email:"user1",password:"12345"})
         expect(res.statusCode).toBe(401)
     })
 
