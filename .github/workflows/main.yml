@@ -1,0 +1,13 @@
+# This is a YAML file
+title: Website Name
+description: A website for sharing content
+github:
+  event_name:push
+tags:
+ - technology
+ - innovation
+ - creativity
+if: ${{ github.event_name == 'push' }}
+  run: echo "This workflow was triggered by a push event."
+else:
+  run: echo "This workflow was triggered by a pull request event."
