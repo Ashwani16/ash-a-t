@@ -1,12 +1,7 @@
 # This is a YAML file
-title: Website Name
+name: Website Name
 description: A website for sharing content
-github:
-  event_name:push
-tags:
- - technology
- - innovation
- - creativity
+
 on: 
   push:
   
