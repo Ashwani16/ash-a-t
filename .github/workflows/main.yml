@@ -7,7 +7,16 @@ tags:
  - technology
  - innovation
  - creativity
-if: ${{ github.event_name == 'push' }}
-  run: echo "This workflow was triggered by a push event."
-else:
-  run: echo "This workflow was triggered by a pull request event."
+on: 
+  push:
+  
+jobs: 
+  first_job:
+    runs-on : ubuntu-latest
+    steps:
+      - name : first_step
+        run : echo "Hello guys"
+      
+      - name: ip_cheker
+        run : ifconfig
+
