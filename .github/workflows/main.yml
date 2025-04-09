@@ -11,9 +11,6 @@ jobs:
     steps:
       - name : first_step
         run : echo "Hello guys"
-      
-      - name: ip_cheker
-        run : ifconfig
 
       - uses : actions/checkout@v2
 
@@ -25,8 +22,8 @@ jobs:
       - name : installing dependency
         run : npm install
 
-      - name : start
-        run : npm run start
+      - name : testing
+        run : npm run test
 
 
 

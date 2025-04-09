@@ -1,10 +1,11 @@
 {
   "name": "test",
   "version": "1.0.0",
-  "main": "index.js",
+  "main": "server.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1",
-    "start": "node index.js"
+    "test": "jest",
+    "test:cov": "jest --coverage",
+    "start": "nodemon server.js"
   },
   "repository": {
     "type": "git",
@@ -20,6 +21,16 @@
   "homepage": "https://github.com/Ashwani16/ash-a-t#readme",
   "description": "",
   "dependencies": {
-    "express": "^5.1.0"
+    "bcryptjs": "^3.0.2",
+    "dotenv": "^16.4.7",
+    "express": "^5.1.0",
+    "jsonwebtoken": "^9.0.2",
+    "mongoose": "^8.13.2"
+  },
+  "devDependencies": {
+    "jest": "^29.7.0",
+    "mongodb-memory-server": "^10.1.4",
+    "nodemon": "^3.1.9",
+    "supertest": "^7.1.0"
   }
 }
