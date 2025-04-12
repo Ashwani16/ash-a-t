@@ -14,7 +14,7 @@ jobs:
 
       - uses : actions/checkout@v2
 
-      - name : settig node version ${{matrix.node_version}}
+      - name : setting node version ${{matrix.node_version}}
         uses: actions/setup-node@v2
         with:
           node-version: ${{ matrix.node-version }}
@@ -25,8 +25,18 @@ jobs:
       - name : testing
         run : npm run test
       
-      - name : deploy
+      - name : deploy to ec2 instace
         run : echo "deploying"
+        uses : appleboy/ssh-action@v1.0.0
+        with :
+          host: ${{secrets.EC2_HOST}}
+          username: ${{secrets.EC2_USER}}
+          key : ${{secrets.EC2_SSH_KEY}}
+          script : |
+            cd ${{secrets.EC2_APP_DIR}}
+            git pull origin master
+            npm install
+            pm2 restart server.js
 
 
 
