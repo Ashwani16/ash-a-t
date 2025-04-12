@@ -24,8 +24,10 @@ jobs:
 
       - name : testing
         run : npm run test
-        run : echo "deploying"
       
+        -name : deplying
+        run : echo "deploying"
+
       - name : deploy to ec2 instace
         uses : appleboy/ssh-action@v1.0.0
         with :
