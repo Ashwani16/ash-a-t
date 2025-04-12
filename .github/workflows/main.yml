@@ -37,12 +37,12 @@ jobs:
 
       - name: Deploy Code to EC2
         run: |
-          ssh ubuntu@${{ secrets.EC2_HOST }} << 'EOF'
-            cd ${{ secrets.EC2_APP_DIR }}
-            git pull origin main
-            npm install
-            pm2 restart server.js
-          EOF
+          ssh ubuntu@${{ secrets.EC2_HOST }} 
+          cd ${{ secrets.EC2_APP_DIR }}
+          git pull origin main
+          npm install
+          pm2 restart server.js
+          
       # - name : deploy to ec2 instace
       #   uses : appleboy/ssh-action@v1.0.0
       #   with :
