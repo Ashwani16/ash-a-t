@@ -24,9 +24,9 @@ jobs:
 
       - name : testing
         run : npm run test
+        run : echo "deploying"
       
       - name : deploy to ec2 instace
-        run : echo "deploying"
         uses : appleboy/ssh-action@v1.0.0
         with :
           host: ${{secrets.EC2_HOST}}
