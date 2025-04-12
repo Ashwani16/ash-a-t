@@ -37,7 +37,7 @@ jobs:
 
       - name: Deploy Code to EC2
         run: |
-          ssh ubuntu@${{ secrets.EC2_HOST }} 
+          ssh -t ubuntu@${{ secrets.EC2_HOST }} 
           cd ${{ secrets.EC2_APP_DIR }}
           git pull origin main
           npm install
