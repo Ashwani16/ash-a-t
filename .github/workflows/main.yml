@@ -25,20 +25,35 @@ jobs:
       - name : testing
         run : npm run test
       
-      - name : deplying
+      - name : deploying
         run : echo "deploying"
 
-      - name : deploy to ec2 instace
-        uses : appleboy/ssh-action@v1.0.0
-        with :
-          host: ${{secrets.EC2_HOST}}
-          username: ${{secrets.EC2_USER}}
-          key : ${{secrets.EC2_SSH_KEY}}
-          script : |
-            cd ${{secrets.EC2_APP_DIR}}
-            git pull origin master
+      - name: Setup SSH
+        run: |
+          mkdir -p ~/.ssh
+          echo "${{ secrets.EC2_SSH_KEY }}" > ~/.ssh/id_rsa
+          chmod 600 ~/.ssh/id_rsa
+          ssh-keyscan -H ${{ secrets.EC2_HOST }} >> ~/.ssh/known_hosts
+
+      - name: Deploy Code to EC2
+        run: |
+          ssh ubuntu@${{ secrets.EC2_HOST }} << 'EOF'
+            cd ${{ secrets.EC2_APP_DIR }}
+            git pull origin main
             npm install
             pm2 restart server.js
+          EOF
+      # - name : deploy to ec2 instace
+      #   uses : appleboy/ssh-action@v1.0.0
+      #   with :
+      #     host: ${{secrets.EC2_HOST}}
+      #     username: ${{secrets.EC2_USER}}
+      #     key : ${{secrets.EC2_SSH_KEY}}
+      #     script : |
+      #       cd ${{secrets.EC2_APP_DIR}}
+      #       git pull origin master
+      #       npm install
+      #       pm2 restart server.js
 
 
 
