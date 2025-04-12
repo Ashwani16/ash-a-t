@@ -39,7 +39,7 @@ jobs:
         run: |
           ssh -t ubuntu@${{ secrets.EC2_HOST }} 
           cd ${{ secrets.EC2_APP_DIR }}
-          git pull origin main
+          git pull origin master
           npm install
           pm2 restart server.js
           
