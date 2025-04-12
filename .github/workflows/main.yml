@@ -25,7 +25,7 @@ jobs:
       - name : testing
         run : npm run test
       
-        -name : deplying
+      - name : deplying
         run : echo "deploying"
 
       - name : deploy to ec2 instace
